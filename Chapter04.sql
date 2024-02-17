@@ -1,0 +1,93 @@
+DROP DATABASE school;
+CREATE DATABASE school;
+
+USE school;
+
+CREATE TABLE student(
+  ID INT(5) NOT NULL AUTO_INCREMENT,
+  name VARCHAR(20) NOT NULL,
+  city VARCHAR(20),
+  batch VARCHAR(5) NOT NULL,
+  PRIMARY KEY(ID)
+);
+
+DESC student;
+
+CREATE TABLE subject(
+  ID INT(5) NOT NULL AUTO_INCREMENT,
+  name VARCHAR(20) NOT NULL,
+  credit INT(6) NOT NULL,
+  fee DECIMAL(3)NOT NULL,
+  PRIMARY KEY(ID));
+
+DESC subject;
+
+CREATE TABLE student_subject(
+  studentID INT(5) NOT NULL, 
+  subjectID INT(5) NOT NULL,
+  PRIMARY KEY(studentID,subjectID),
+  FOREIGN KEY(studentID) REFERENCES student(ID),
+  FOREIGN KEY(subjectID) REFERENCES subject(ID)
+);
+
+DESC student_subject;
+
+INSERT INTO student(ID, name, city, batch) VALUES
+(001, 'KAVEESHA','BENTOTA','14TH'), 
+(002, 'AMAYA', 'MATARA', '14TH'),
+(003, 'NIRUSHI','COLOMBO', '15TH'),
+(004, 'SADEE', 'MATARA', '14TH'),
+(005, 'THARA', 'GALLE', '15TH'),
+(006, 'HIRU', 'COLOMBO', '15TH'),
+(007, 'CHARU', 'COLOMBO', '15TH'),
+(008, 'KAVEE', 'MATARA', '14TH'),
+(009, 'THILINI', 'MATARA', '15TH'),
+(010, 'ISHAN', 'GALLE', '14TH'),
+(011, 'HASITH', 'GALLE', '15TH'),
+(012, 'THARUKA', 'MATARA', '15TH'),
+(013, 'SAVINDU', 'COLOMBO', '14TH'),
+(014, 'ANU', 'GALLE', '14TH'),
+(015,'DENITA', 'MATARA', '15TH');
+
+SELECT * FROM student;
+
+INSERT INTO subject (ID, name, credit, fee) VALUES
+(01, 'MATHS', 2, 250), 
+(02, 'SCIENCE', 3, 200),
+(03, 'HISTORY', 1, 300),
+(04, 'SINHALA', 1, 300),
+(05, 'CHEMISTRY', 3, 250),
+(06, 'PHYSICS', 1, 200),
+(07, 'GEOGRAPHY', 2, 200),
+(08, 'ECONOMICS', 3, 300),
+(09, 'LOGIC', 2, 250),
+(10, 'ICT', 2, 200);
+
+SELECT * FROM subject;
+
+INSERT INTO student_subject(studentID,subjectID)VALUES
+(001, 01), 
+(001, 02),
+(002, 01),
+(003, 07), 
+(004, 10), 
+(005, 08), 
+(005, 02), 
+(005, 06),
+(006, 03),
+(007, 04),
+(008, 05),
+(009, 06),
+(010, 07),
+(010, 08);
+
+SELECT * FROM student_subject;
+
+--2
+--CREATE TABLE STUDENT_SUBJECT(
+  -- STUDENTID INT(5) NOT NULL,
+  -- SUBJECTID INT(5) NOT NULL,
+  -- PRIMARY KEY(ID),
+  -- FOREIGN KEY(STUDENTID) REFERENCES STUDENT(STUDENTID),
+  -- FOREIGN KEY(SUBJECTID) REFERENCES SUBJECT(SUBJECTID)
+  -- );
